@@ -1,0 +1,41 @@
+# @load 'ait-canvas' ;
+# @load 'ait-dom' ;
+# @load './particle.ait' ;
+
+# arc(x, y, r, startAngle, endAngle, clockwise?)
+# ( [x y] r -- )
+drawArc:
+  0
+  PI 2 *
+  true
+  arc ;
+
+# ( p -- )
+drawParticle:
+  .Color fillStyle
+  beginPath
+  .Radius
+  drawArc
+  fill
+  closePath ;
+
+particles:
+  []
+  500
+  [ particle swons ]
+  times ;
+
+drawParticles: dup [ drawParticle ] step ;
+moveParticles: [ moveParticle ] map ;
+
+fillBackground:
+  "black" fillStyle
+  [0 0] canvasWidth canvasHeight fillRect ;
+
+particles
+fillBackground
+0.1 globalAlpha
+[
+  drawParticles
+  moveParticles
+] 60 rAF

@@ -1,0 +1,3 @@
+tuck: dup swap [ swap ] dip ;
+drop: pop ;
+bool: 0 > ;

@@ -1,0 +1,14 @@
+# @load 'ait-canvas' ;
+# @load 'ait-dom' ;
+# @load './particle.ait' ;
+
+# arc(x, y, r, startAngle, endAngle, clockwise?)
+# ( [x y] r -- )
+drawArc:
+  0
+  PI 2 *
+  true
+  arc ;
+
+"black" fillStyle
+[0 0] canvasWidth canvasHeight fillRect

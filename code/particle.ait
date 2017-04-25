@@ -1,0 +1,41 @@
+X: 0 canvasWidth random2 ;
+Y: 0 canvasHeight random2 ;
+R: 1 5 random2 ;
+DX: -1 1 random2 ;
+DY: -1 1 random2 ;
+
+index: 0 3 random2 floor ;
+color:
+  [ "cyan" "magenta" "yellow" ]
+  index
+  at
+  [ pop ] dip ;
+
+#ins: ( v aggr i -- aggr[i:v] )
+asX: swap 0 ins ;
+asY: swap 1 ins ;
+asDX: swap 2 ins ;
+asDY: swap 3 ins ;
+asColor: swap 4 ins ;
+asRadius: swap 5 ins ;
+
+#at: ( aggr i -- aggr aggr[i] )
+.X: 0 at ;
+.Y: 1 at ;
+.DX: 2 at ;
+.DY: 3 at ;
+.Color: 4 at ;
+.Radius: 5 at ;
+
+particle:
+  []
+  X asX
+  Y asY
+  DX asDX
+  DY asDY
+  color asColor
+  R asRadius ;
+
+moveParticle:
+  .DX [ .X ] dip + asX
+  .DY [ .Y ] dip + asY ;
